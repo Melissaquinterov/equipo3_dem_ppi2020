@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Allura&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+
+/* font-family: 'Open Sans', sans-serif; para el resto de letra*/
+
+.fondoInicio {
+  border-radius: 0, 5px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  width: 400px;
+  height: 470px;
+}
+
+.container {
+  border-radius: 12px;
+  background-color: #03ecf9;
+  text-align: center;
+  display: inline-block;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.openShop {
+  background-color: #03ecf9;
+  font-family: "Allura", cursive;
+  font-size: 50px;
+  font-weight: 500px;
+  right: 15px;
+  height: 30px;
+  
+}
+
+
+h1 {
+ font-family: "Allura", cursive;
+ font-size: 50px;
+}
+
+ .buscador {
+  width: 100%;
+}
+
+
+header{
+height:50px;
+width: 50px;
+align-self: center;
+}
+
+.botonBusqueda{
+border: center black solid;
+height: 40px;
+height: 30px;
+justify-content:center;;
+}
+
+
+.header{
+justify-content: center;
+height: 40px;
+
+align-self: center;
+}
+
+.barraBusqueda{
+width: 450px;
+height: 40px;
+border-radius:5px;
+}
+
+.containerUno {
+  border-radius: 12px;
+  background-color: #03ecf9;
+  text-align: center;
+  display: inline-block;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.fondoInicio1 {
+  border-radius: 0, 5px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  width: 250px;
+  height: 270px;
+}
+.botoninit {
+  background-color: white;
+  width: 90px;
+  height: 40px;
+  border-radius: 12px;
+  border-bottom-color: white;
+  border-color: #08c2cc;
+  border-width: 5px;
+}
+.botoninit2 {
+  background-color: white;
+  width: 150px;
+  height: 40px;
+  border-radius: 12px;
+  border-bottom-color: white;
+  border-color: #08c2cc;
+  border-width: 5px;
+}
+.botonregister {
+  background-color: white;
+  width: 100px;
+  height: 40px;
+  border-radius: 12px;
+  border-bottom-color: white;
+  border-color: #08c2cc;
+  border-width: 5px;
+}
+
+.containerDos {
+  border-radius: 12px;
+  background-color: #03ecf9;
+  text-align: center;
+  display: inline-block;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.fondoInicio2 {
+  border-radius: 0, 5px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  width: 290px;
+  height: 600px;
+}
+
+.h3{
+justify-content: center;
+}
+
