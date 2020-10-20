@@ -5,7 +5,7 @@ import BarberiaEsparta from "../images/barberiaEsparta.jpg";
 import Celulares from "../images/celulares.jpg";
 import Carniceria from "../images/carniceria.jpg";
 
-class Establecimientos extends React.Component {
+class Establecimientos1 extends React.Component {
   render() {
     return (
       <div>
@@ -57,4 +57,4 @@ class Establecimientos extends React.Component {
     );
   }
 }
-export default Establecimientos;
+export default Establecimientos1;

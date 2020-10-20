@@ -4,33 +4,35 @@ import "../style/style.css";
 class IniciarSesion extends React.Component {
   render() {
     return (
-      <div className="container-fluid, containerUno ,fondoInicio1">
+      <div className="container-fluid containerDos fondoInicio4">
         <div className="row">
-          <div className="col-sm-12 col-md-6 col-lg-6">
-            <h1> OpenShop</h1>
+          <div className="col-sm">
+            <h1 className="openshop"> OpenShop</h1>
 
             <br />
 
             <form>
               <label>
-                Usuario:
-                <input type="text" name="name" />
+                <strong className="text2"> Usuario </strong>
+                <br />
+                <input className="text" type="text" name="name" />
               </label>
             </form>
 
             <form>
-              <label>
-                Contraseña:
-                <input type="text" name="name" />
+              <label className="text2">
+                <strong> Contraseña </strong>
+                <br />
+                <input className="text" type="text" name="name" />
               </label>
             </form>
-            <br />
-            <button class="Boton2" type="button">
-              <a href="inicia">Atrás</a>
+
+            <button className="button" type="button">
+              <a href="inicio">Atrás</a>
             </button>
 
-            <button class="Boton2" type="button">
-              <a href="inicia">Entrar</a>
+            <button className="button" type="button">
+              <a href="lobby">Entrar</a>
             </button>
           </div>
         </div>
@@ -38,4 +40,5 @@ class IniciarSesion extends React.Component {
     );
   }
 }
+
 export default IniciarSesion;

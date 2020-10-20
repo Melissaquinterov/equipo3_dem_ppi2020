@@ -1,4 +1,5 @@
-import React from "react";class Registrarse extends React.Component {
+import React from "react";
+class Registrarse extends React.Component {
   render() {
     return (
       <div className="container-fluid containerDos fondoInicio2">
@@ -6,79 +7,62 @@ import React from "react";class Registrarse extends React.Component {
           <div className="col-sm">
             <h1> OpenShop</h1>
 
-           <br />
+            <br />
 
-           <h2> Registro </h2>
-
-           <form>
+            <h2 className="register"> Registro </h2>
+            <form>
               <label>
-                Nombre del establecimiento:
-                <input type="text" name="name" />
+                <strong> Usuario : </strong>
+                <br />
+                <input className="text" type="text" name="name" />
               </label>
             </form>
-
-           <form>
+            <form>
               <label>
-                Tipo de establecimiento
-                <input type="text" name="name" />
-
+                <strong> E-mail : </strong>
+                <br />
+                <input className="text" type="text" name="name" />
               </label>
             </form>
-           <br />
-
-           <form>
+            <form>
               <label>
-                E-mail:
-                <input type="text" name="name" />
+                <strong> Contraseña : </strong>
+                <br />
+                <input className="text" type1="text" name="name" />
               </label>
             </form>
-
-           <form>
+            <form>
               <label>
-                Contraseña:
-                <input type="text" name="name" />
+                <strong> Confirmar contraseña : </strong>
+                <br />
+                <input className="text" type="text" name="name" />
               </label>
             </form>
+            
+            <div className="comuna">
+              <select id="inputState" class="form-control">
+                <option selected>Comuna</option>
+                <option>5</option>
+              </select>
+            </div>
+            <div className="comuna">
+              <select id="inputState" class="form-control">
+                <option selected>Comuna</option>
+                <option>5</option>
+              </select>
+            </div>
 
-           <form>
-              <label>
-                Confirmar contraseña:
-                <input type="text" name="name" />
-              </label>
-            </form>
-
-           >
-
-           <form>
-              <label>
-                E-mail:
-                <input type="text" name="name" />
-              </label>
-            </form>
-
-            <form>              <label>
-                Contraseña:
-                <input type="text" name="name" />
-              </label>
-            </form>
-
-            <form>              <label>
-                Confirmar contraseña:
-                <input type="text" name="name" />
-              </label>
-            </form>
-
-            <button class="Boton2" type="button">
-              <a href="inicia">Atrás</a>
+            <button className="button" type="button">
+              <a href="inicio">Atrás</a>
             </button>
 
-            <button lass="Boton2" type="button">
-              <a href="inicia">Entrar</a>
+            <button className="button" type="button">
+              <a href="inicio">Entrar</a>
             </button>
           </div>
         </div>
-       </div>
-   );
+      </div>
+    );
   }
 }
 
