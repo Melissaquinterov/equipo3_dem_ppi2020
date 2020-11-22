@@ -18,7 +18,7 @@ body {
   font-weight: 600px;
   height: 30px;
 }
-.botoninit {
+.boton {
   background-color: white;
   height: 40px;
   border-radius: 12px;
@@ -26,6 +26,16 @@ body {
   border-color: #08c2cc;
   border-width: 5px;
   margin: 10px;
+}
+.fondoInicio {
+  border-radius: 0, 5px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  width: 350px;
+  height: 470;
+  margin-top: 5%;
+  background-color: #03ecf9;
 }
 
 .border {

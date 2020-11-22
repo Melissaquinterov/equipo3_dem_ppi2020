@@ -2,6 +2,8 @@ import Axios from "axios";
 import React, { useState } from "react";
 import "../style/style.css";
 import Swal from "sweetalert2";
+import Logo from "../components/Logo";
+import { Link } from "react-router-dom";
 
 const IniciarSesion = () => {
   const [userData, setUserData] = useState({});
@@ -35,12 +37,12 @@ const IniciarSesion = () => {
   }
 
   return (
-    <div class="fondoblanco">
-      <div className="container-fluid containerDos fondoInicio4">
+    <div className="fondoblanco p-4">
+      <div className="  border container-fluid containerDos fondoInicio">
         <div className="row">
           <div className="col-sm">
             <form>
-              <h1 className="openshop"> OpenShop</h1>
+              <Logo />
 
               <br />
 
@@ -48,7 +50,7 @@ const IniciarSesion = () => {
                 <strong className="text2"> Usuario </strong>
                 <br />
                 <input
-                  className="text"
+                  className="boton"
                   type="text"
                   name="usuario"
                   onChange={updateUser}
@@ -59,20 +61,21 @@ const IniciarSesion = () => {
                 <strong> Contraseña </strong>
                 <br />
                 <input
-                  className="text"
+                  className="boton"
                   name="password"
                   onChange={updateUser}
                   type="password"
                 />
               </label>
+              <br />
 
-              <button className="button" type="button">
-                <a className="text-dark" href="inicio">
+              <button className="boton" type="button">
+                <Link className="text-dark" to="inicio">
                   Atrás
-                </a>
+                </Link>
               </button>
 
-              <button className="button" type="button" onClick={singIn}>
+              <button className="boton" type="button" onClick={singIn}>
                 Entrar
               </button>
             </form>
