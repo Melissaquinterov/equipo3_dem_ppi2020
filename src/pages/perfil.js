@@ -1,38 +1,75 @@
-import React from "react";
+import React, { useState } from "react";
+import Axios from "axios";
 import "../style/style.css";
 
-class perfil extends React.Component {
-  render() {
-    return (
-      <div class="fondoblanco">
-        <div className=" container-fluid  container5 fondoInicio7">
-          <div className="container">
-            <div className="row">
-              <div className="col-sm">
-                <br />
-                <br />
-                <h1 className="openshop2">Open Shop</h1>
-                <br />
+const Perfil = () => {
+  const [establecimiento, setEstablecimiento] = useState({});
 
-                <form>
-                  <label>
-                    <strong> Nombre: </strong>
-                    <input className="text" type="text" name="name" />
-                  </label>
-                </form>
+  function updateEstablecimiento(ev) {
+    ev.persist();
+    const name = ev.target.name;
+    const value = ev.target.value;
 
-                <form>
-                  <label>
-                    <strong> Dirección: </strong>
-                    <input className="text" type="text" name="name" />
-                  </label>
-                </form>
+    setEstablecimiento({
+      ...establecimiento,
+      [name]: value
+    });
+  }
+
+  function guardarEstablecimiento() {
+    Axios.post("https://prlik.sse.codesandbox.io/", establecimiento)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  return (
+    <div class="fondoblanco">
+      <div className=" container-fluid  container5 fondoInicio7">
+        <div className="container">
+          <div className="row">
+            <div className="col-sm">
+              <br />
+              <br />
+              <h1 className="openshop2">Open Shop</h1>
+              <br />
+
+              <form>
+                <label>
+                  <strong> Nombre: </strong>
+                  <input
+                    className="text"
+                    type="text"
+                    name="nombre"
+                    onChange={updateEstablecimiento}
+                  />
+                </label>
+
+                <label>
+                  <strong> Dirección: </strong>
+                  <input
+                    className="text"
+                    type="text"
+                    name="direccion"
+                    onChange={updateEstablecimiento}
+                  />
+                </label>
 
                 <br />
 
                 <div class="personas ">
-                  <select id="inputState" class="form-control">
-                    <option selected>Tipo de categoría</option>
+                  <select
+                    id="inputState"
+                    class="form-control"
+                    name="categoria"
+                    onChange={updateEstablecimiento}
+                  >
+                    <option selected disabled>
+                      Tipo de categoría
+                    </option>
                     <option>Droguería</option>
                     <option>Tecnología</option>
                     <option>Restaurante</option>
@@ -41,8 +78,13 @@ class perfil extends React.Component {
                 </div>
                 <br />
                 <div className="personas">
-                  <select id="inputState" class="form-control">
-                    <option selected>
+                  <select
+                    id="inputState"
+                    class="form-control"
+                    name="cantidadPersonas"
+                    onChange={updateEstablecimiento}
+                  >
+                    <option selected disabled>
                       Nº de personas en el establecimiento:
                     </option>
                     <option>1</option>
@@ -59,12 +101,18 @@ class perfil extends React.Component {
                   </select>
                 </div>
                 <br />
-                <form>
-                  <label>
-                    <strong> Horario: </strong>
-                    <input className="text" type="text" name="name" />
-                  </label>
-                </form>
+
+                <label>
+                  <strong> Horario: </strong>
+                  <input
+                    className="text"
+                    type="text"
+                    name="horario"
+                    placeholder="10:00 - 09:00"
+                    onChange={updateEstablecimiento}
+                  />
+                </label>
+
                 <br />
                 <label>
                   <strong> Domicilios </strong>
@@ -74,10 +122,11 @@ class perfil extends React.Component {
                   <input
                     class="form-check-input"
                     type="radio"
-                    name="exampleRadios"
+                    name="domicilios"
                     id="exampleRadios1"
-                    value="option1"
-                    checked
+                    value="Sí"
+                    defaultChecked
+                    onChange={updateEstablecimiento}
                   />
                   <label class="form-check-label" for="exampleRadios1">
                     Si
@@ -88,9 +137,10 @@ class perfil extends React.Component {
                   <input
                     class="form-check-input"
                     type="radio"
-                    name="exampleRadios"
+                    name="domicilios"
                     id="exampleRadios2"
-                    value="option2"
+                    value="No"
+                    onChange={updateEstablecimiento}
                   />
                   <label class="form-check-label" for="exampleRadios2">
                     No
@@ -101,9 +151,10 @@ class perfil extends React.Component {
                   <input
                     class="form-check-input"
                     type="radio"
-                    name="exampleRadios"
+                    name="domicilios"
                     id="exampleRadios2"
-                    value="option2"
+                    value="Fuera de servicio"
+                    onChange={updateEstablecimiento}
                   />
                   <label class="form-check-label" for="exampleRadios2">
                     Fuera de servicio
@@ -112,18 +163,24 @@ class perfil extends React.Component {
 
                 <br />
                 <button className="button" type="button">
-                  <a href="establecimientos1">Atrás</a>
+                  <a className="text-dark" href="establecimientos1">
+                    Atrás
+                  </a>
                 </button>
 
-                <button className="button" type="button">
-                  <a href="establecimientos1">Actualizar</a>
+                <button
+                  className="button"
+                  type="button"
+                  onClick={guardarEstablecimiento}
+                >
+                  Actualizar
                 </button>
-              </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
-    );
-  }
-}
-export default perfil;
+    </div>
+  );
+};
+export default Perfil;

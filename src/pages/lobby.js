@@ -25,8 +25,10 @@ class Lobby extends React.Component {
                 <h4> Establecimientos creados</h4>
 
                 <div className="divperfil">
-                  <button type="button" className="more">
-                    <a href="perfil">+</a>
+                  <button className="more">
+                    <a className="text-dark" href="perfil">
+                      +
+                    </a>
                   </button>
 
                   <button className="button1" onClick={this._Alerta}>
@@ -34,12 +36,16 @@ class Lobby extends React.Component {
                   </button>
                 </div>
 
-                <button type="button" className="button">
-                  <a href="iniciarSesion">Atrás</a>
+                <button className="button">
+                  <a className="text-dark" href="iniciarSesion">
+                    Atrás
+                  </a>
                 </button>
 
-                <button type="button" className="button">
-                  <a href="establecimientos1">Siguiente</a>
+                <button className="button">
+                  <a className="text-dark" href="establecimientos1">
+                    Siguiente
+                  </a>
                 </button>
               </div>
             </div>

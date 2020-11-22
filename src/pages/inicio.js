@@ -14,20 +14,20 @@ class Inicio extends React.Component {
                 <h1 className="openshop2">Open Shop</h1>
                 <br />
                 <button className="botoninit" type="button">
-                  <a href="categorias">Inicio</a>
+                  <a className="text-dark" href="categorias">Inicio</a>
                 </button>
                 <h1>..........................</h1>
                 <p>¿ Eres dueño de algun establecimiento?</p>
 
                 <button className="botoninit2" type="button">
-                  <a href="iniciarSesion">Inicio sesión</a>
+                  <a className="text-dark" href="iniciarSesion">Inicio sesión</a>
                 </button>
 
                 <br />
                 <br />
                 <p></p>
                 <button className="botonregister" type="button">
-                  <a href="registrarse">Registro</a>
+                  <a className="text-dark" href="registrarse">Registro</a>
                 </button>
               </div>
             </div>
