@@ -32,27 +32,18 @@ const Drogueria = () => {
           </h3>
           <br></br>
         </div>
+        <div className="card stylecarsito">
+          <img class="card-img-top" src={Farmacenter} alt="Card image cap" />
+          <div class="card-body">
+            <p class="card-text">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
+          </div>
+        </div>
 
         <div className="row text-center establecimientoCard">
           <div className="col">
-            <div class="card mb-3">
-              <img
-                class="card-img-top"
-                src={Farmacenter}
-                alt="Card image cap"
-              ></img>
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
-                </p>
-                <p class="card-text">
-                  <small class="text-muted">Last updated 3 mins ago</small>
-                </p>
-              </div>
-            </div>
             <div className="w-100">
               <img
                 className="imagenEstablecimiento"
