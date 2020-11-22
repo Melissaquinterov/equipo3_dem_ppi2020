@@ -4,220 +4,233 @@ import "../style/style.css";
 import Logo from "../components/Logo";
 
 const imageToBase64 = (file) => {
-	return new Promise((resolve, reject) => {
-		if (!file.type.includes("image")) {
-			reject(new Error("File must be type image"));
-		}
-		const reader = new FileReader();
-		reader.readAsDataURL(file);
-		reader.onload = () => resolve(reader.result);
-		reader.onerror = (error) => reject(error);
-	});
+  return new Promise((resolve, reject) => {
+    if (!file.type.includes("image")) {
+      reject(new Error("File must be type image"));
+    }
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
 };
 
 const Perfil = () => {
-	const [establecimiento, setEstablecimiento] = useState({});
+  const [establecimiento, setEstablecimiento] = useState({});
 
-	function updateEstablecimiento(ev) {
-		ev.persist();
-		const name = ev.target.name;
-		let value = ev.target.value;
+  function updateEstablecimiento(ev) {
+    ev.persist();
+    const name = ev.target.name;
+    let value = ev.target.value;
 
-		if (name === "categoria") {
-			value = Number(value);
-		}
+    if (name === "categoria") {
+      value = Number(value);
+    }
 
-		setEstablecimiento({
-			...establecimiento,
-			[name]: value,
-		});
-	}
+    setEstablecimiento({
+      ...establecimiento,
+      [name]: value
+    });
+  }
 
-	function subirFoto(ev) {
-		const image = ev.target.files[0];
-		imageToBase64(image).then((result) => {
-			setEstablecimiento({
-				...establecimiento,
-				imagenes: result,
-			});
-		});
-	}
+  function subirFoto(ev) {
+    const image = ev.target.files[0];
+    imageToBase64(image).then((result) => {
+      setEstablecimiento({
+        ...establecimiento,
+        imagenes: result
+      });
+    });
+  }
 
-	function guardarEstablecimiento() {
-		const idAdministrador = localStorage.getItem("usuario");
-		if (idAdministrador) {
-			Axios.post("http://localhost:4000/crear-establecimiento", {
-				...establecimiento,
-				idAdministrador,
-			})
-				.then((response) => {
-					console.log(response);
-					
-				})
-				.catch((error) => {
-					console.log(error);
-				});
-		} else {
-			alert("No admin en sesión");
-		}
-	}
+  function guardarEstablecimiento() {
+    const idAdministrador = localStorage.getItem("usuario");
+    if (idAdministrador) {
+      Axios.post("https://1kfuq.csb.app/crear-establecimiento", {
+        ...establecimiento,
+        idAdministrador
+      })
+        .then((response) => {
+          console.log(response);
 
-	return (
-		<div className="container bg-cian">
-			<Logo />
-			<form className="row d-flex justify-content-center flex-column align-content-center">
-				<div className="form-group">
-					<label>
-						<strong> Nombre: </strong>
-						<input
-							className="form-control"
-							type="text"
-							name="nombre"
-							onChange={updateEstablecimiento}
-						/>
-					</label>
-					<div className="form-group">
-						<label>
-							<strong> Dirección: </strong>
-							<input
-								className="form-control"
-								type="text"
-								name="direccion"
-								onChange={updateEstablecimiento}
-							/>
-						</label>
-					</div>
+          const type = establecimiento.categoria;
+          if (type === 1) {
+            window.loca.href = "/belleza";
+          }
+          if (type === 2) {
+            window.loca.href = "/drogueria";
+          }
+          if (type === 3) {
+            window.loca.href = "/restaurante";
+          }
+          if (type === 4) {
+            window.loca.href = "/tecnologia";
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      alert("No admin en sesión");
+    }
+  }
 
-					<div className="form-group">
-						<button className="btn btn-primary" type="button">
-							<label htmlFor="foto">
-								Subir foto
-								<input
-									type="file"
-									id="foto"
-									name="foto"
-									className="d-none"
-									onChange={subirFoto}
-								/>
-							</label>
-						</button>
-					</div>
-					<img
-						src={establecimiento.imagenes}
-						className="img-responsive mb-5"
-						with="200"
-					/>
+  return (
+    <div className="container bg-cian">
+      <Logo />
+      <form className="row d-flex justify-content-center flex-column align-content-center">
+        <div className="form-group">
+          <label>
+            <strong> Nombre: </strong>
+            <input
+              className="form-control"
+              type="text"
+              name="nombre"
+              onChange={updateEstablecimiento}
+            />
+          </label>
+          <div className="form-group">
+            <label>
+              <strong> Dirección: </strong>
+              <input
+                className="form-control"
+                type="text"
+                name="direccion"
+                onChange={updateEstablecimiento}
+              />
+            </label>
+          </div>
 
-					<div className="form-group">
-						<div className="personas ">
-							<select
-								className="form-control"
-								name="categoria"
-								onChange={updateEstablecimiento}
-								defaultValue="Tipo de categoría"
-							>
-								<option disabled>Tipo de categoría</option>
-								<option value="1">Belleza</option>
-								<option value="2">Droguería</option>
-								<option value="3">Restaurante</option>
-								<option value="4">Tecnología</option>
-							</select>
-						</div>
-					</div>
-					<div className="form-group">
-						<div className="personas">
-							<select
-								className="form-control"
-								name="cantidadPersonas"
-								onChange={updateEstablecimiento}
-								defaultValue="Nº de personas en el establecimiento:"
-							>
-								<option disabled>Nº de personas en el establecimiento:</option>
-								{[...Array(10)].map((num, i) => (
-									<option value={i + 1} key={i}>
-										{i + 1}
-									</option>
-								))}
-								<option>Más de 10</option>
-							</select>
-						</div>
-					</div>
-					<div className="form-group">
-						<label>
-							<strong> Horario: </strong>
-							<input
-								className="form-control"
-								type="text"
-								name="horario"
-								placeholder="10:00 - 09:00"
-								onChange={updateEstablecimiento}
-							/>
-						</label>
-					</div>
-					<div className="form-group">
-						<label>
-							<strong> Domicilios </strong>
-						</label>
+          <div className="form-group">
+            <button className="btn btn-primary" type="button">
+              <label htmlFor="foto">
+                Subir foto
+                <input
+                  type="file"
+                  id="foto"
+                  name="foto"
+                  className="d-none"
+                  onChange={subirFoto}
+                />
+              </label>
+            </button>
+          </div>
+          <img
+            src={establecimiento.imagenes}
+            className="img-responsive mb-5"
+            with="200"
+          />
 
-						<div className="form-check">
-							<input
-								className="form-check-input"
-								type="radio"
-								name="domicilios"
-								id="exampleRadios1"
-								value="Sí"
-								defaultChecked
-								onChange={updateEstablecimiento}
-							/>
-							<label className="form-check-label" htmlFor="exampleRadios1">
-								Si
-							</label>
-						</div>
+          <div className="form-group">
+            <div className="personas ">
+              <select
+                className="form-control"
+                name="categoria"
+                onChange={updateEstablecimiento}
+                defaultValue="Tipo de categoría"
+              >
+                <option disabled>Tipo de categoría</option>
+                <option value="1">Belleza</option>
+                <option value="2">Droguería</option>
+                <option value="3">Restaurante</option>
+                <option value="4">Tecnología</option>
+              </select>
+            </div>
+          </div>
+          <div className="form-group">
+            <div className="personas">
+              <select
+                className="form-control"
+                name="cantidadPersonas"
+                onChange={updateEstablecimiento}
+                defaultValue="Nº de personas en el establecimiento:"
+              >
+                <option disabled>Nº de personas en el establecimiento:</option>
+                {[...Array(10)].map((num, i) => (
+                  <option value={i + 1} key={i}>
+                    {i + 1}
+                  </option>
+                ))}
+                <option>Más de 10</option>
+              </select>
+            </div>
+          </div>
+          <div className="form-group">
+            <label>
+              <strong> Horario: </strong>
+              <input
+                className="form-control"
+                type="text"
+                name="horario"
+                placeholder="10:00 - 09:00"
+                onChange={updateEstablecimiento}
+              />
+            </label>
+          </div>
+          <div className="form-group">
+            <label>
+              <strong> Domicilios </strong>
+            </label>
 
-						<div className="form-check">
-							<input
-								className="form-check-input"
-								type="radio"
-								name="domicilios"
-								id="exampleRadios2"
-								value="No"
-								onChange={updateEstablecimiento}
-							/>
-							<label className="form-check-label" htmlFor="exampleRadios2">
-								No
-							</label>
-						</div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="domicilios"
+                id="exampleRadios1"
+                value="Sí"
+                defaultChecked
+                onChange={updateEstablecimiento}
+              />
+              <label className="form-check-label" htmlFor="exampleRadios1">
+                Si
+              </label>
+            </div>
 
-						<div className="form-check">
-							<input
-								className="form-check-input"
-								type="radio"
-								name="domicilios"
-								id="exampleRadios2"
-								value="Fuera de servicio"
-								onChange={updateEstablecimiento}
-							/>
-							<label className="form-check-label" htmlFor="exampleRadios2">
-								Fuera de servicio
-							</label>
-						</div>
-					</div>
-					<div className="form-group text-dark">
-						<a className="btn btn-primary mr-5" href="establecimientos1">
-							Atrás
-						</a>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="domicilios"
+                id="exampleRadios2"
+                value="No"
+                onChange={updateEstablecimiento}
+              />
+              <label className="form-check-label" htmlFor="exampleRadios2">
+                No
+              </label>
+            </div>
 
-						<button
-							className="btn badge-success"
-							type="button"
-							onClick={guardarEstablecimiento}
-						>
-							Actualizar
-						</button>
-					</div>
-				</div>
-			</form>
-		</div>
-	);
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="domicilios"
+                id="exampleRadios2"
+                value="Fuera de servicio"
+                onChange={updateEstablecimiento}
+              />
+              <label className="form-check-label" htmlFor="exampleRadios2">
+                Fuera de servicio
+              </label>
+            </div>
+          </div>
+          <div className="form-group text-dark">
+            <a className="btn btn-primary mr-5" href="establecimientos1">
+              Atrás
+            </a>
+
+            <button
+              className="btn badge-success"
+              type="button"
+              onClick={guardarEstablecimiento}
+            >
+              Actualizar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
 };
 export default Perfil;

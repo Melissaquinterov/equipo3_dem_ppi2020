@@ -1,40 +1,41 @@
 import React from "react";
 import "../style/style.css";
+import Logo from "../components/Logo";
+import { Link } from "react-router-dom";
 
 class Inicio extends React.Component {
-  render() {
-    return (
-      <div className="fondoblanco">
-        <div className="container-fluid container fondoInicio8">
-          <div className="container">
-            <div className="row">
-              <div className="col-sm">
-                <br />
-                <br />
-                <h1 className="openshop2">Open Shop</h1>
-                <br />
-                <button className="botoninit" type="button">
-                  <a className="text-dark" href="categorias">Inicio</a>
-                </button>
-                <h1>..........................</h1>
-                <p>¿ Eres dueño de algun establecimiento?</p>
+	render() {
+		return (
+			<div
+				className="fondoblanco d-flex justify-content-center align-items-center"
+				style={{ width: "100%", height: "100vh" }}
+			>
+				<div className=" border  row text-center shadow-lg bg-cian p-4">
+					<div className="col-12 mt-4">
+						<Logo />
+						<button className="botoninit" type="button">
+							<a className="text-dark" href="categorias">
+								Inicio
+							</a>
+						</button>
+						<h1>..........................</h1>
+						<p>¿Eres dueño de algun establecimiento?</p>
 
-                <button className="botoninit2" type="button">
-                  <a className="text-dark" href="iniciarSesion">Inicio sesión</a>
-                </button>
-
-                <br />
-                <br />
-                <p></p>
-                <button className="botonregister" type="button">
-                  <a className="text-dark" href="registrarse">Registro</a>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+						<button className="botoninit" type="button" >
+							<Link className="text-dark" to="iniciarSesion">
+								Inicio sesión
+							</Link>
+						</button>
+							<br/>
+						<button className="botoninit" type="button">
+							<Link className="text-dark" to="registrarse">
+								Registro
+							</Link>
+						</button>
+					</div>
+				</div>
+			</div>
+		);
+	}
 }
 export default Inicio;

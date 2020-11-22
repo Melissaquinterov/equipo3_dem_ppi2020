@@ -1,65 +1,58 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../components/header";
-import MaoTse from "../images/maoTse.jpeg";
-import Tolucho from "../images/tolucho.jpeg";
 import Menu from "../components/menu";
+import Axios from "axios";
+import TarjetaEstablecimiento from "../components/tarjetaEstablecimiento";
+import Logo from "../components/Logo";
 
-class Restaurante extends React.Component {
-  render() {
-    return (
-      <div>
-        <div className="container-fluid fondo ">
-          <div className="row">
-            <br></br>
-            <Header />
-            <h1 className="container">OpenShop</h1>
-            <Menu />
-            <h3 className="tituloComunaCinco container">
-                Establecimientos comuna 5: <br></br> Categoría Restaurante
-            </h3>
-            <br></br>
-          </div>
-          <div className="row text-center establecimientoCard">
-          <div className="col">
-          <div className="w-100">
-          <img
-            className="imagenEstablecimiento " 
-            src={MaoTse}
-            alt=""
-          ></img>
-          <h4 className="t">
-            Mao-Tsé <br />
-            </h4> 
-            <p className="t">
-            Dirección: Carrera 65 #11425 <br></br>
-             Nº de personas en el establecimiento: 6 <br></br>
-             Horario: 11:00 - 10:00<br></br> Domicilio:No disponible</p>
-              
-          </div>
-          </div> 
-           </div>
-           <div className="row text-center establecimientoCard">
-          <div className="col">
-          <div className="w-100">
-          <img
-            className="imagenEstablecimiento"
-            src={Tolucho}
-            alt=""
-          ></img>
-          <h4 className="t">
-          Tolucho <br />
-            </h4>
-            <p className="t">
-            Dirección: Carrera 68#94-64  <br></br>
-             Nº de personas en el establecimiento: 3 <br></br>
-             Horario: 12:00 - 11:00<br></br> Domicilio: Disponible </p>
-              
-          </div>
-          </div> 
-           </div>
-        </div>
-      </div>
-    );
-  }
-}
+const Restaurante = () => {
+	const [restaurantes, setRestaurantes] = useState([]);
+
+	useEffect(() => {
+		Axios.get("https://1kfuq.csb.app/restaurantes")
+			.then((response) => {
+				const data = response.data.rows;
+				console.log(data);
+				setRestaurantes(data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}, []);
+
+	return (
+    // d-flex justify-content-center flex-column mt-3 rounded
+		<div className="container bg-cian">
+			<div className="row">
+				<div className="col-12">
+					<Logo />
+				</div>
+				<div className="col-12">
+					<Menu />
+				</div>
+				<div className="col-12">
+					<h4 className="text-center">
+						Establecimientos comuna 5: <br /> Categoría Restaurante
+					</h4>
+					<div className="row">
+						{restaurantes.map((restaurante, i) => {
+							return (
+								<div className="col-12 col-md-6" key={i}>
+									<TarjetaEstablecimiento
+										nombre={restaurante.Nomnbreestablecimiento}
+										direccion={restaurante.Dirrecion}
+										imagen={restaurante.imagenes}
+										personas={restaurante.Ndepersonas}
+										horario={restaurante.Horario}
+										domicilios={restaurante.Domicilios}
+									></TarjetaEstablecimiento>
+								</div>
+							);
+						})}
+					</div>
+				</div>
+			</div>
+		</div>
+	);
+};
 export default Restaurante;
