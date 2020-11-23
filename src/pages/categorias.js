@@ -1,67 +1,41 @@
 import React from "react";
+import { Link, useRouteMatch } from "react-router-dom";
 import "../style/style.css";
-import BarberiaEsparta from "../images/belleza.png";
-import Farmacia from "../images/farmacia.png";
-import Carniceria from "../images/restaurante.png";
-import Celulares from "../images/tecnologia.png";
-import Header from "../components/header";
-import MenuCategorias from "../components/menuCategorias";
+import tiposCategorias from "../db/categorias.json";
+import Menu from "../components/menu";
+import Logo from "../components/Logo";
 
-class categorias extends React.Component {
-  render() {
-    return (
-      <div className=" container-fluid container fondoInicio9">
-        <div className="container">
-          <Header />
-          <h1 className="container2 container">OpenShop</h1>
-          <MenuCategorias />
+const Categorias = () => {
+	const { url } = useRouteMatch();
 
-          <div className=" container row">
-            <div className="col-sm"></div>
+	return (
+		<div className="container-fluid">
+			<div className="container bg-cian">
+				{/* <Header /> */}
+				<Logo />
+				<Menu tipoBusqueda="categorias" />
 
-            <div class="  row row-cols-1 row-cols-md-2 ">
-              <div class="col mb-4">
-                <div class="card">
-                  <img src={Farmacia} class="card-img-top" alt="..."></img>
-                  <div class="card-body">
-                    <a href="drogueria">Droguería</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col mb-4">
-                <div class="card">
-                  <img src={Celulares} class="card-img-top" alt="..."></img>
-                  <div class="card-body">
-                    <a href="tecnologia">Tecnología</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col mb-4">
-                <div class="card">
-                  <img
-                    src={BarberiaEsparta}
-                    class="card-img-top"
-                    alt="..."
-                  ></img>
-                  <div class="card-body">
-                    <a href="Belleza">Belleza</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col mb-4">
-                <div class="card">
-                  <img src={Carniceria} class="card-img-top" alt="..."></img>
-                  <div class="card-body">
-                    <a href="restaurante">Restaurante</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
+				<div className="row mt-3">
+					{tiposCategorias.map((categoria, i) => {
+						return (
+							<div className="col-12 col-md-6">
+								<div className="card mx-auto mb-4" style={{width: '18rem'}} >
+									<img src={categoria.imagen} className="card-img-top image-responsive" alt="..." width="150" height="200" />
+									<div className="card-body">
+									
 
-export default categorias;
+										<Link to={`${url}/${categoria.nombre}`} className="btn btn-primary">
+											{categoria.nombre}
+										</Link>
+									</div>
+								</div>
+							</div>
+						);
+					})}
+				</div>
+			</div>
+		</div>
+	);
+};
+
+export default Categorias;

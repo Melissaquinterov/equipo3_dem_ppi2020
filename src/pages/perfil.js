@@ -217,7 +217,7 @@ const Perfil = () => {
 						</div>
 					</div>
 					<div className="form-group text-dark">
-						<a className="btn btn-primary mr-5" href="establecimientos1">
+						<a className="btn btn-primary mr-5" href="establecimientos">
 							Atrás
 						</a>
 

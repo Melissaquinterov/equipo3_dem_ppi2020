@@ -1,20 +1,21 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
+import { useRouteMatch, useParams } from "react-router-dom";
+import Menu from "./menu";
 import Axios from "axios";
-import Logo from "../components/Logo";
-import Menu from "../components/menu";
-import TarjetaEstablecimiento from "../components/tarjetaEstablecimiento";
+import TarjetaEstablecimiento from "./tarjetaEstablecimiento";
+import Logo from "./Logo";
 
-const Establecimientos = () => {
-
-  const [establecimientos, setEstablecimientos] = useState([])
+const Categoria = () => {
+	const { categoria } = useParams();
+	const [establecimiento, setEstablecimiento] = useState([]);
 
 	useEffect(() => {
-		Axios.get("https://prlik.sse.codesandbox.io/establecimientos")
+		Axios.get("https://prlik.sse.codesandbox.io/" + categoria)
 			.then((response) => {
-        console.log(response);
+				console.log(response);
 				const data = response.data.rows;
 				// console.log(data);
-				setEstablecimientos(data);
+				setEstablecimiento(data);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -22,7 +23,8 @@ const Establecimientos = () => {
 	}, []);
 
 	return (
-		<div className="container bg-cian mt-2">
+		// d-flex justify-content-center flex-column mt-3 rounded
+		<div className="container bg-cian">
 			<div className="row">
 				<div className="col-12">
 					<Logo />
@@ -31,12 +33,15 @@ const Establecimientos = () => {
 					<Menu />
 				</div>
 				<div className="col-12">
-					<h3 className="text-center">Establecimientos comuna 5</h3>
+					<h4 className="text-center">
+						Establecimientos comuna 5: <br /> Categoria {categoria}
+					</h4>
 					<div className="row">
-						{establecimientos.map((establecimiento, i) => {
+						{establecimiento.map((establecimiento, i) => {
 							return (
 								<div className="col-12 col-md-6 mb-3" key={i}>
 									<TarjetaEstablecimiento
+										id={establecimiento.ID_Establecimiento}
 										nombre={establecimiento.Nomnbreestablecimiento}
 										direccion={establecimiento.Dirrecion}
 										imagen={establecimiento.imagenes}
@@ -53,4 +58,4 @@ const Establecimientos = () => {
 		</div>
 	);
 };
-export default Establecimientos;
+export default Categoria;

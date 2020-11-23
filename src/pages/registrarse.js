@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Axios from "axios";
+import { Link } from "react-router-dom";
+import Logo from "../components/Logo";
 
 const Registrarse = () => {
   const [userData, setUserData] = useState({});
@@ -37,21 +39,22 @@ const Registrarse = () => {
   }
 
   return (
-    <div className="fondoblanco">
-      <div className="container-fluid containerDos fondoInicio2">
+    <div className="fondoblanco p-0">
+      <div className="border container-fluid containerDos fondoInicio">
         <div className="row">
           <div className="col-sm">
             <form>
-              <h1> OpenShop</h1>
+              <Logo />
 
               <br />
 
               <h2 className="register"> Registro </h2>
               <label>
-                <strong> Usuario : </strong>
+                <br />
+                <strong> Usuario: </strong>
                 <br />
                 <input
-                  className="text"
+                  className="boton"
                   type="text"
                   id="name"
                   name="usuario"
@@ -63,7 +66,7 @@ const Registrarse = () => {
                 <strong> E-mail : </strong>
                 <br />
                 <input
-                  className="text"
+                  className="boton"
                   type="email"
                   name="email"
                   onChange={updateUser}
@@ -74,7 +77,7 @@ const Registrarse = () => {
                 <strong> Contraseña : </strong>
                 <br />
                 <input
-                  className="text"
+                  className="boton"
                   type="password"
                   name="pass"
                   onChange={updateUser}
@@ -85,7 +88,7 @@ const Registrarse = () => {
                 <strong> Confirmar contraseña : </strong>
                 <br />
                 <input
-                  className="text"
+                  className="boton"
                   type="password"
                   name="pass2"
                   onChange={updateUser}
@@ -93,11 +96,13 @@ const Registrarse = () => {
               </label>
               <br />
 
-              <button className="button" type="button">
-                <a className="text-dark" href="inicio">Atrás</a>
+              <button className="boton" type="boton">
+                <Link className="text-dark" to="inicio">
+                  Atrás
+                </Link>
               </button>
 
-              <button className="button" type="button" onClick={registro}>
+              <button className="boton" type="boton" onClick={registro}>
                 Entrar
               </button>
             </form>
