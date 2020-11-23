@@ -1,83 +1,55 @@
-import React from "react";
-import Header from "../components/header";
+import React, { useState, useEffect } from "react";
+import Axios from "axios";
+import Logo from "../components/Logo";
 import Menu from "../components/menu";
-import BarberiaEsparta from "../images/barberiaEsparta.jpg";
-import Celulares from "../images/celulares.jpg";
-import maoTse from "../images/maoTse.jpeg";
+import TarjetaEstablecimiento from "../components/tarjetaEstablecimiento";
 
-class Establecimientos extends React.Component {
-  render() {
-    return (
-      <div>
-        <div className="container-fluid fondo ">
+const Establecimientos = () => {
+  const [establecimientos, setEstablecimientos] = useState([]);
+
+  useEffect(() => {
+    Axios.get("https://prlik.sse.codesandbox.io/establecimientos")
+      .then((response) => {
+        console.log(response);
+        const data = response.data.rows;
+        // console.log(data);
+        setEstablecimientos(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  return (
+    <div className="container bg-cian mt-2">
+      <div className="row">
+        <div className="col-12">
+          <Logo />
+        </div>
+        <div className="col-12">
+          <Menu />
+        </div>
+        <div className="col-12">
+          <h3 className="text-center">Establecimientos comuna 5</h3>
           <div className="row">
-            <br></br>
-            <Header />
-            <h1 className="container">OpenShop</h1>
-            <Menu />
-            <h3 className="tituloComunaCinco container">
-              <br /> <br />
-              Establecimientos comuna 5
-            </h3>
+            {establecimientos.map((establecimiento, i) => {
+              return (
+                <div className="col-12 col-md-6 mb-3" key={i}>
+                  <TarjetaEstablecimiento
+                    nombre={establecimiento.Nomnbreestablecimiento}
+                    direccion={establecimiento.Dirrecion}
+                    imagen={establecimiento.imagenes}
+                    personas={establecimiento.Ndepersonas}
+                    horario={establecimiento.Horario}
+                    domicilios={establecimiento.Domicilios}
+                  ></TarjetaEstablecimiento>
+                </div>
+              );
+            })}
           </div>
-          <div className="row text-center establecimientoCard">
-          <div className="col">
-          <div className="w-100">
-          <img
-            className="imagenEstablecimiento " 
-            src={BarberiaEsparta}
-            alt=""
-          ></img>
-          <h4 className="t">
-            Barberia Esparta <br />
-            </h4> 
-            <p className="t">
-            Dirección: Carrera 70#11130   <br></br>    Nº de personas en el establecimiento: 3   <br></br>           Horario: 10:00 - 9:00 <br></br>
-            Domicilio: No disponible </p>
-            
-          </div>
-          </div> 
-           </div>
-           <div className="row text-center establecimientoCard">
-          <div className="col">
-          <div className="w-100">
-          <img
-            className="imagenEstablecimiento"
-            src={Celulares}
-            alt=""
-          ></img>
-          <h4 className="t">
-            Celulares J&D <br />
-            </h4>
-            <p className="t">
-            Dirección: Carrera 74#10913  <br></br>     Nº de personas en el establecimiento: 7  <br></br> 
-          Horario: 8:00 - 9:00 <br></br>  Domicilio: Disponible </p>
-              
-          </div>
-          </div> 
-           </div>
-           <div className="row text-center establecimientoCard">
-          <div className="col">
-          <div className="w-100">
-          <img
-            className="imagenEstablecimiento"
-            src={maoTse}
-            alt=""
-          ></img>
-          <h4 className="t">
-          maoTse  <br /> 
-            </h4>
-            <p className="t">
-            Dirección: Carrera 65 #11425 <br></br>
-             Nº de personas en el establecimiento: 6 <br></br>
-             Horario: 11:00 - 10:00<br></br> Domicilio:No disponible </p>
-             
-          </div>
-          </div> 
-           </div>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 export default Establecimientos;
