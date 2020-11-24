@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Allura&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+
+body {
+  /* font-family: 'Open Sans', sans-serif; */
+  background-image: url("https://image.freepik.com/vector-gratis/patron-sobre-shopping_1061-495.jpg");
+}
+.bg-cian {
+  background-color: #03ecf9;
+}
+
+.brand {
+  text-align: center;
+  font-family: "Allura", cursive;
+  margin: 10px auto;
+  margin-bottom: 40px;
+  font-size: 50px;
+  font-weight: 600px;
+  height: 30px;
+}
+.boton {
+  background-color: white;
+  height: 40px;
+  border-radius: 12px;
+  border-bottom-color: white;
+  border-color: #08c2cc;
+  border-width: 5px;
+  margin: 10px;
+}
+.fondoInicio {
+  border-radius: 0, 5px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  width: 350px;
+  height: 470;
+  margin-top: 5%;
+  background-color: #03ecf9;
+}
+
+.border {
+  border-radius: 30px;
+}
